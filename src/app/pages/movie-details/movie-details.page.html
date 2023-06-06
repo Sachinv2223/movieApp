@@ -1,0 +1,37 @@
+<ng-container *ngIf="movieDetails">
+
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>{{movieDetails.title}}</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/movies"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-card>
+      <img [src]="imgBaseUrl+'/w400'+movieDetails.poster_path" alt="">
+
+      <ion-card-header>
+        <ion-card-title>{{movieDetails.title}}</ion-card-title>
+        <ion-card-subtitle>{{movieDetails.tagline}}</ion-card-subtitle>
+        <ion-text color="tertiary">
+          <span *ngFor="let g of movieDetails.genres; let isLast = last">
+            {{g.name}} {{ !isLast ? '.' : ''}}
+          </span>
+        </ion-text>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{movieDetails.overview}}
+      </ion-card-content>
+
+    </ion-card>
+  </ion-content>
+
+  <ion-footer>
+    <ion-button expand="full" (click)="openHomePage(movieDetails.homepage)">Open Homepage</ion-button>
+  </ion-footer>
+
+</ng-container>
